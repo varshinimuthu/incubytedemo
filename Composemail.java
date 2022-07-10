@@ -1,0 +1,58 @@
+package incubytedemo.incubytedemo;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+public class Composemail {
+	WebDriver driver;
+	WebDriverWait wait;
+	@BeforeClass
+	public void test1() {
+		driver= new ChromeDriver();
+		wait= new WebDriverWait(driver, 60);
+	System.setProperty("webdriver.chrome.driver", "C:/Users/vamuthuk/Downloads/chromeon23rd/chromedriver.exe");
+	driver.manage().window().maximize();
+	driver.get("https://www.gmail.com/");
+	}
+
+	@Test
+	public void test() {
+		// wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='email'")));
+		driver.findElement(By.xpath("//input[@type='email']")).sendKeys("varshinitest1@gmail.com");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(("//*[@id='identifierNext']/div/button/span"))));
+		driver.findElement(By.xpath("//*[@id='identifierNext']/div/button/span")).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='password']")));
+		driver.findElement(By.xpath("//input[@type='password']")).sendKeys("Password@123");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(("//*[@id='passwordNext']/div/button/span"))));
+		driver.findElement(By.xpath("//*[@id='passwordNext']/div/button/span")).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(("//*[@class='z0']"))));
+		driver.findElement(By.xpath("//*[@class='z0']")).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(("(//*[@class='vO'])[1]"))));
+		driver.findElement(By.xpath("(//*[@class='vO'])[1]")).sendKeys("varshinitest1@gmail.com");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(("//input[@name='subjectbox']"))));
+		driver.findElement(By.xpath("//input[@name='subjectbox']")).sendKeys("IncubyteDemo");
+		
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(("//*[@id=':a4']"))));
+		driver.findElement(By.xpath("//*[@id=':a4']")).sendKeys("This is a Automation Testing demo");
+		
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(("(//*[contains(text(),'Send')])[2]"))));
+		driver.findElement(By.xpath("(//*[contains(text(),'Send')])[2]")).click();
+	}
+
+	  @AfterClass
+	  public void tearDown () {
+	    driver.quit();
+	    
+	  }
+
+}
