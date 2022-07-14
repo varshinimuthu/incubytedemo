@@ -67,8 +67,6 @@ public class Composemail {
 //		WebElement element = driver.findElement(By.id("//*[@id=':2a']"));
 //		JavascriptExecutor executor = (JavascriptExecutor)driver;
 //		executor.executeScript("arguments[0].click();", element);
-		
-//		
 //		driver.findElement(By.xpath("//*[@id=':2a']")).sendKeys("varshinimuthukrishnan6@gmail.com");
 //		test.log(LogStatus.PASS, "Recipient Email Address For CC is Entered Successfully");
 		
