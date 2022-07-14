@@ -62,6 +62,7 @@ public class Composemail {
 		test.log(LogStatus.PASS, "Compose Email is clicked successfully");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(("(//*[@class='vO'])[1]"))));
 		driver.findElement(By.xpath("(//*[@class='vO'])[1]")).sendKeys("varshinitest1@gmail.com");
+		driver.findElement(By.xpath("//div[@data-hovercard-id='varshinitest1@gmail.com']")).click();
 		test.log(LogStatus.PASS, "Recipient Email Address is Entered Successfully");
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(("//*[@id=':2a']"))));
 //		WebElement element = driver.findElement(By.id("//*[@id=':2a']"));
