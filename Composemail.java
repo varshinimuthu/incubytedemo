@@ -1,9 +1,14 @@
 package incubytedemo.incubytedemo;
+import java.util.Random;
+
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
@@ -41,11 +46,14 @@ public class Composemail {
 	@Test
 	public void test()throws InterruptedException {
 		driver.get("https://www.gmail.com/");
-	
-	
 		test.log(LogStatus.PASS, "Navigated to Gmail");
 		// wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='email'")));
+		Random random=new Random();
+		int randomInt = random.nextInt(1000);
+		//driver.findElement(By.xpath("//input[@type='email']")).sendKeys("varshinitest"+randomInt+"@yopmail.com");
+		
 		driver.findElement(By.xpath("//input[@type='email']")).sendKeys("varshinitest1@gmail.com");
+		
 		test.log(LogStatus.PASS, "Email is Entered Successfully");
 		wait.until(
 				ExpectedConditions.visibilityOfElementLocated(By.xpath(("//*[@id='identifierNext']/div/button/span"))));
@@ -61,16 +69,30 @@ public class Composemail {
 		driver.findElement(By.xpath("//*[@class='z0']")).click();
 		test.log(LogStatus.PASS, "Compose Email is clicked successfully");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(("(//*[@class='vO'])[1]"))));
-		driver.findElement(By.xpath("(//*[@class='vO'])[1]")).sendKeys("varshinitest1@gmail.com");
-		driver.findElement(By.xpath("//div[@data-hovercard-id='varshinitest1@gmail.com']")).click();
+		driver.findElement(By.xpath("(//*[@class='vO'])[1]")).sendKeys("varshinitest"+randomInt+"@yopmail.com");
+		//driver.findElement(By.xpath("//div[@data-hovercard-id='varshinitest1@gmail.com']")).click();
 		test.log(LogStatus.PASS, "Recipient Email Address is Entered Successfully");
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(("//*[@id=':2a']"))));
-//		WebElement element = driver.findElement(By.id("//*[@id=':2a']"));
-//		JavascriptExecutor executor = (JavascriptExecutor)driver;
-//		executor.executeScript("arguments[0].click();", element);
-//		driver.findElement(By.xpath("//*[@id=':2a']")).sendKeys("varshinimuthukrishnan6@gmail.com");
-//		test.log(LogStatus.PASS, "Recipient Email Address For CC is Entered Successfully");
+		driver.findElement(By.xpath("(//*[@class='vO'])[1]")).click();
 		
+
+			wait.until(ExpectedConditions.elementToBeClickable(By.xpath(("//*[@class='aB gQ pE']"))));
+		
+			driver.findElement(By.xpath("//*[@class='aB gQ pE']")).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(("(//*[@class='vO'])[2]"))));
+		driver.findElement(By.xpath("(//*[@class='vO'])[2]")).sendKeys("varshinitestcc"+randomInt+"@yopmail.com");
+	
+		test.log(LogStatus.PASS, "Recipient Email Address For CC is Entered Successfully");
+		
+		
+
+		
+
+wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(("(//*[contains(text(),'Bcc')])[1]"))));
+	driver.findElement(By.xpath("(//*[contains(text(),'Bcc')])[1]")).click();
+driver.findElement(By.xpath("(//*[@class='vO'])[3]")).sendKeys("varshinitestbccemail"+randomInt+"@yopmail.com");
+test.log(LogStatus.PASS, "Recipient Email Address For bCC is Entered Successfully");
+	
+	
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(("//input[@name='subjectbox']"))));
 		driver.findElement(By.xpath("//input[@name='subjectbox']")).sendKeys("IncubyteDemo");
 		test.log(LogStatus.PASS, "Email Subject is Entered successfully");
@@ -78,11 +100,11 @@ public class Composemail {
 		wait.until(
 				ExpectedConditions.visibilityOfElementLocated(By.xpath(("//*[@class='Am Al editable LW-avf tS-tW']"))));
 		driver.findElement(By.xpath("//*[@class='Am Al editable LW-avf tS-tW']"))
-				.sendKeys("This is a Automation Testing demo for Compose Functionality in Gmail");
+				.sendKeys("This is a Automation Testing demo for Compose Functionality in Gmail ");
 		test.log(LogStatus.PASS, "EmailBody is Entered Successfully");
 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(("(//*[contains(text(),'Send')])[2]"))));
-		driver.findElement(By.xpath("(//*[contains(text(),'Send')])[2]")).click();
+		//driver.findElement(By.xpath("(//*[contains(text(),'Send')])[2]")).click();
 		test.log(LogStatus.PASS, "Send Button is Clicked Successfully");
 	}
 
@@ -94,7 +116,7 @@ public class Composemail {
 
 	@AfterClass
 	public void tearDown() {
-	//	driver.close();
+		// driver.close();
 	}
 
 }
